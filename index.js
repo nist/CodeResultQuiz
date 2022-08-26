@@ -8,6 +8,8 @@ import figlet from 'figlet';
 import { createSpinner } from 'nanospinner';
 
 let programmingLanguage;
+var nbGoodAnswer = 0;
+var nbWrongAnswer = 0;
 
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
@@ -40,5 +42,32 @@ async function askProgrammingLanguage() {
 }
 
 
+async function question1() {
+  const answers = await inquirer.prompt({
+    name: "question1",
+    type: "list",
+    message: "\"Awesome\"+\", \"+\"Javascript\"\n",
+    choices: [
+      "Awesome Javascript",
+      "\"Awesome\", \"Javascript\"",
+      "Awesome, Javascript",
+      "\"Awesome, Javascript\"",
+    ],
+  });
+  return answers.question1 === "Awesome, Javascript";
+}
+
+
+async function handleAnswer(isCorrect) {
+  // const spinner = createSpinner("Checking answer...").start();
+  await sleep();
+  if (isCorrect) {
+  	nbGoodAnswer++;
+  } else {
+  	nbWrongAnswer++;
+  }
+}
+
 await welcome();
 await askProgrammingLanguage();
+await handleAnswer(await question1());
