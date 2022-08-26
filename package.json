@@ -1,0 +1,29 @@
+{
+  "name": "coderesultquiz",
+  "version": "1.0.0",
+  "description": "CLI quiz on coding",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nist/CodeResultQuiz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nist/CodeResultQuiz/issues"
+  },
+  "homepage": "https://github.com/nist/CodeResultQuiz#readme",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "chalk-animation": "^2.0.2",
+    "figlet": "^1.5.2",
+    "gradient-string": "^2.0.1",
+    "inquirer": "^9.1.0",
+    "nanospinner": "^1.1.0"
+  }
+}
