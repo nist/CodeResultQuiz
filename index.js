@@ -8,7 +8,7 @@ import figlet from 'figlet';
 import { createSpinner } from 'nanospinner';
 
 let programmingLanguage;
-var nbQuestion = 1;
+var nbQuestion = 2;
 var nbGoodAnswer = 0;
 var nbWrongAnswer = 0;
 
@@ -58,19 +58,42 @@ async function question1() {
   return answers.question1 === "Awesome, Javascript";
 }
 
+async function question2() {
+  const answers = await inquirer.prompt({
+    name: "question2",
+    type: "list",
+    message: "12+\"34\"\n",
+    choices: [
+      "1234",
+      "12\"34\"",
+      "Error",
+      "\"1234\"",
+    ],
+  });
+  return answers.question2 === "1234";
+}
+
+
 
 async function handleAnswer(isCorrect) {
-  // const spinner = createSpinner("Checking answer...").start();
+  const spinner = createSpinner("Checking answer...").start();
   await sleep();
   if (isCorrect) {
+    spinner.success({
+       text: `Good answer`,
+    });
   	nbGoodAnswer++;
   } else {
+    spinner.error({
+       text: `Wrong answer`,
+    });
+
   	nbWrongAnswer++;
   }
 }
 
 function result() {
-  console.clear();
+  // console.clear();
   var score = (nbGoodAnswer/nbQuestion)*100;
   if (score == 100) {
   	const msg = `Perfect !`;
@@ -94,4 +117,5 @@ function result() {
 await welcome();
 await askProgrammingLanguage();
 await handleAnswer(await question1());
+await handleAnswer(await question2());
 await result();
