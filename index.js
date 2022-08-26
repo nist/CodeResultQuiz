@@ -8,7 +8,7 @@ import figlet from 'figlet';
 import { createSpinner } from 'nanospinner';
 
 let programmingLanguage;
-var nbQuestion = 4;
+var nbQuestion = 5;
 var nbGoodAnswer = 0;
 var nbWrongAnswer = 0;
 
@@ -102,6 +102,20 @@ async function question4() {
   return answers.question4 === "true";
 }
 
+async function question5() {
+  const answers = await inquirer.prompt({
+    name: "question5",
+    type: "list",
+    message: "0 === false\n",
+    choices: [
+      "true",
+      "false",
+      "NaN",
+    ],
+  });
+  return answers.question5 === "false";
+}
+
 async function handleAnswer(isCorrect) {
   const spinner = createSpinner("Checking answer...").start();
   await sleep();
@@ -147,4 +161,5 @@ await handleAnswer(await question1());
 await handleAnswer(await question2());
 await handleAnswer(await question3());
 await handleAnswer(await question4());
+await handleAnswer(await question5());
 await result();
