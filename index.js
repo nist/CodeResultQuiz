@@ -8,6 +8,7 @@ import figlet from 'figlet';
 import { createSpinner } from 'nanospinner';
 
 let programmingLanguage;
+var nbQuestion = 1;
 var nbGoodAnswer = 0;
 var nbWrongAnswer = 0;
 
@@ -68,6 +69,29 @@ async function handleAnswer(isCorrect) {
   }
 }
 
+function result() {
+  console.clear();
+  var score = (nbGoodAnswer/nbQuestion)*100;
+  if (score == 100) {
+  	const msg = `Perfect !`;
+
+		figlet(msg, (err, data) => {
+			console.log(gradient.pastel.multiline(data));
+		});
+	} else if (score >= 80) {
+  	console.log(chalk.bgGreen("Excellent!"));
+	} else if (score >= 60) {
+  	console.log(chalk.bgBlue("Good work!"));
+	} else if (score >= 40) {
+   	console.log(chalk.bgYellow("Almost got it!"));
+	} else if (score >= 20) {
+   	console.log(chalk.bgYellow("Better luck next time!"));
+	} else { 
+ 		console.log(chalk.bgRed("Sorry!"));
+	}
+}
+
 await welcome();
 await askProgrammingLanguage();
 await handleAnswer(await question1());
+await result();
